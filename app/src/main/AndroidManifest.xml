@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rose.snake"
     xmlns:dist="http://schemas.android.com/apk/distribution"
-    android:targetSandboxVersion="2" >
+    android:targetSandboxVersion="2">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <dist:module dist:instant="true" />
     <application
@@ -14,11 +16,30 @@
         android:theme="@style/Theme.Snake">
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:autoVerify="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="default-url"
+                android:value="https://cota-cdn.mnc020.mcc334.pub.3gppnetwork.org/snake" />
+
+            <intent-filter android:autoVerify="true"
+                android:order="1">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="cota-cdn.mnc020.mcc334.pub.3gppnetwork.org"
+                    android:pathPattern="/snake" />
+                <data
+                    android:scheme="http" />
             </intent-filter>
         </activity>
     </application>
