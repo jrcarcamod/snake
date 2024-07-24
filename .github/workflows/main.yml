@@ -1,0 +1,31 @@
+name: Build Project
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - develop
+      - release
+      - main
+
+jobs:
+  build:
+    runs-on: ${{ github.actor == 'jrcarcamod' && 'self-hosted-jrcarcamod' || github.actor == 'usuario2' && 'self-hosted-user2' || 'ubuntu-latest' }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: Verification of the publication in Maven
+        run: ./gradlew publishToMavenLocal
