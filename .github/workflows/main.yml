@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ github.actor == 'jrcarcamod' && 'self-hosted-jrcarcamod' || github.actor == 'usuario2' && 'self-hosted-user2' || 'ubuntu-latest' }}
+    runs-on: ${{ github.actor == 'jrcarcamod' && 'self-hosted-jrcarcamod' || github.actor == 'nleiva01' && 'self-hosted-nleiva01' || 'ubuntu-latest' }}
 
     steps:
       - uses: actions/checkout@v4
